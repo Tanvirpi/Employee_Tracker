@@ -12,12 +12,13 @@ CREATE TABLE role (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(100) NOT NULL,
     salary DECIMAL,
-    department_id INT references department(id),
+    department_id INT references department(id)
 );
+
 CREATE TABLE employee (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
-    role_id INT references department(id),
-    manager_id INT references employee(id)on delete set null,
+    role_id INT references role(id),
+    manager_id INT references employee(id)on delete set null
 );

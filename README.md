@@ -26,7 +26,7 @@ THEN I am prompted to select an employee to update and their new role and this i
 
 ### Screenshot
 
-![Image](https://github.com/Tanvirpi/Timed-Quiz/blob/main/assets/Screenshot.png)
+![Image](https://github.com/Tanvirpi/Employee_Tracker/blob/main/assets/Screenshot.png)
 
 
 ### References

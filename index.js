@@ -122,10 +122,34 @@ function addrole() {
 })
 }
 function addemployee() {
-    db.query('', function (err, data) {
-        if (err) throw err;
-        console.table(data)
-        start_menu()
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "firstName",
+            message: "What is the employee's first name?"
+        },
+        {
+            type: "input",
+            name: "lastName",
+            message: "What is the employee's last name?"
+        },
+        {
+            type: "input",
+            name: "role",
+            message: "What is the employees's role ID?"
+        },
+        {
+            type: "input",
+            name: "manager",
+            message: "What is the manager's ID?",
+        }
+    ]
+    ).then(response => {
+        db.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)", [response.firstName, response.lastName, response.role, response.manager], (error) => {
+            if (error) throw error;
+            console.table(data)
+            start_menu()
+        })
     })
 }
 function updateemployeerole() {

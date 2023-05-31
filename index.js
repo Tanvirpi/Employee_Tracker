@@ -125,27 +125,27 @@ function addemployee() {
     inquirer.prompt([
         {
             type: "input",
-            name: "firstName",
+            name: "first_name",
             message: "What is the employee's first name?"
         },
         {
             type: "input",
-            name: "lastName",
+            name: "last_name",
             message: "What is the employee's last name?"
         },
         {
             type: "input",
-            name: "role",
+            name: "role_id",
             message: "What is the employees's role ID?"
         },
         {
             type: "input",
-            name: "manager",
+            name: "manager_id",
             message: "What is the manager's ID?",
         }
     ]
     ).then(response => {
-        db.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)", [response.firstName, response.lastName, response.role, response.manager], (error) => {
+        db.query(`INSERT INTO employee (first_name, last_name, role_id, manager_id)VALUES ("${input.first_name}","${input.last_name}",${input.role_id},${input.manager_id})`, (error) => {
             if (error) throw error;
             console.table(data)
             start_menu()

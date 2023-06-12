@@ -83,14 +83,14 @@ function adddepartment() {
         }
     ]).then(input => {
         db.query(`INSERT INTO department (department_name)
-    VALUES ("${input.department}"),`, function (err, data) {
+    VALUES ("${input.department}");`, function (err, data) {
             if (err) throw err;
             console.table(data)
             start_menu()
         })
     })
 }
-function addrole() {
+function addrole() { 
     inquirer.prompt([
         {
             name: "title",
@@ -134,18 +134,36 @@ function addemployee() {
             message: "What is the employee's last name?"
         },
         {
-            type: "input",
+            type: "list",
+            choices:[
+                {name:"Sales Lead",value:1},
+                {name:"Salesperson",value:2},
+                {name:"lead Engineer",value:3},
+                {name:"Software Engineer",value:4},
+                {name:"Account manager",value:5},
+                {name:"Accountant",value:6},
+                {name:"Legal Team Lead",value:7},
+                {name:"Lawyer",value:8}
+
+            ],
             name: "role_id",
             message: "What is the employees's role ID?"
         },
         {
-            type: "input",
+            type: "list",
+            choices:[
+                {name:"John Doe",value:1},
+                {name:"Ashley Rodriguez",value:3},
+                {name:"Kunal Singh",value:5},
+                {name:" Sarah Lourd",value:7}
+
+            ],
             name: "manager_id",
             message: "What is the manager's ID?",
         }
     ]
-    ).then(response => {
-        db.query(`INSERT INTO employee (first_name, last_name, role_id, manager_id)VALUES ("${input.first_name}","${input.last_name}",${input.role_id},${input.manager_id})`, (error) => {
+    ).then(input => {
+        db.query(`INSERT INTO employee (first_name, last_name, role_id, manager_id)VALUES ("${input.first_name}","${input.last_name}",${input.role_id},${input.manager_id});`, (error,data) => {
             if (error) throw error;
             console.table(data)
             start_menu()
